@@ -1,32 +1,25 @@
 import { Inter } from "next/font/google";
-import '@styles/global.css';
-import Nav from './components/Nav';
-import Provider from './components/Provider';
-
-
+import Nav from "./components/Nav";
+// import Provider from './components/Provider';
 
 export const metadata = {
-    title: 'shoe',
-    description: 'Discover & Share AI Prompts '
-}
+  title: "shoe-app",
+};
 
 function RootLayout({ children }) {
-    return (
-        <html lang='en'>
-            <body>
-                <Provider>
-                    <div className='main'>
-                        <div className='gradient'>
-                        </div>
-                    </div>
-                    <main className='app'>
-                        <Nav />
-                        {children}
-                    </main>
-                </Provider>
-            </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+      <body>
+        <div className="main">
+          <div className="gradient"></div>
+        </div>
+        <main className="app">
+          <Nav />
+          {children}
+        </main>
+      </body>
+    </html>
+  );
 }
 
 export default RootLayout;
