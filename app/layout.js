@@ -1,5 +1,8 @@
-import { Inter } from "next/font/google";
-import Nav from "./components/Nav";
+// import { Inter } from "next/font/google";
+
+import './globals.css';
+import Nav from "../components/Nav";
+import { ChakraProvider } from '@chakra-ui/react'
 // import Provider from './components/Provider';
 
 export const metadata = {
@@ -10,13 +13,14 @@ function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="main">
-          <div className="gradient"></div>
-        </div>
-        <main className="app">
+      
+        <div className="w-full">
           <Nav />
+          <ChakraProvider>
           {children}
-        </main>
+          </ChakraProvider>
+        </div>
+       
       </body>
     </html>
   );
