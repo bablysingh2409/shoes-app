@@ -1,4 +1,6 @@
 import React from "react";
+import Link from 'next/link';
+
 
 const data = [
   { name: "shoe1", price: "₹2000" },
@@ -16,17 +18,26 @@ function NewArrival() {
       <div className="w-full flex overflow-x-scroll gap-2 items-center mt-2 hide-scrollbar ">
         {data.map((item, i) => {
           return (
-            <div key={i} className="flex justify-center items-center flex-col shadow-lg p-4 ">
-              <div className="w-[200px] flex justify-center items-center">
-                <img src="/newArrivalShoe.png" alt="shoe" 
+            <Link  key={i} href='/productDetails'>
+              <div
+               
+                className="flex justify-center items-center flex-col shadow-lg p-4"
+              >
+                <div className="w-[200px] flex justify-center items-center">
+                  <img
+                    src="/newArrivalShoe.png"
+                    alt="shoe"
                     className="w-[70%] "
-                />
+                  />
+                </div>
+                <div className="w-[150px] flex justify-center items-center flex-col py-2 ">
+                  <p className="uppercase text-xl font-semibold">{item.name}</p>
+                  <p className="text-sm font-semibold text-gray-600">
+                    {item.price}
+                  </p>
+                </div>
               </div>
-              <div className="w-[150px] flex justify-center items-center flex-col py-2 ">
-                <p className="uppercase text-xl font-semibold">{item.name}</p>
-                <p className="text-sm font-semibold text-gray-600">{item.price}</p>
-              </div>
-            </div>
+            </Link>
           );
         })}
       </div>
