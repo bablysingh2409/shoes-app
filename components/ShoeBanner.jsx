@@ -6,7 +6,7 @@ import { useRef } from "react";
 // import Link from "next/link";
 
 const Slide = () => (
-  <div className="bg-cover sm:bg-contain bg-center h-[40vh] sm:h-[70vh] font-book-antiqua flex justify-center items-center" style={{ backgroundImage: "url('/shoe-banner.png')" }}>
+  <div className="bg-cover sm:bg-cover bg-center h-[40vh] sm:h-[70vh] font-book-antiqua flex justify-center items-center" style={{ backgroundImage: "url('/shoe-banner.png')" }}>
     <div className="flex flex-col items-center mt-12 md:mt-20">
       <p className="text-black font-serif text-4xl font-normal leading-none uppercase mb-2">
         WOMEN&#39;S SHOES
