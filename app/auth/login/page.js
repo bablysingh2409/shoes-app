@@ -14,22 +14,9 @@ export function Page() {
   const [userOtp, setUserOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [newUser, setNewUser] = useState(null);
-  const [isLogin,setIsLogin]=useState(false);
-
-
-  useEffect(()=>{
-       const isLoggedIn=localStorage.getItem('isLogin');
-       if(isLoggedIn){
-        router.push('/profile');
-       }
-    //    setIsLogin(isLoggedIn);
-  },[router])
-
 
   const notify = (message) => toast(message, { icon: "👏" });
-//   if(isLogin){
-//     router.push('/profile');
-//   }
+
 
   const handleChange = (e) => {
     let { value, name } = e.target;

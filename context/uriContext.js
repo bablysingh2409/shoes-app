@@ -1,7 +1,13 @@
 "use client"
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axiosInstance from '@/services/axiosConfig';
-const UriContext = createContext();
+const UriContext = createContext(null);
+
+export const useUriContext = () => {
+    const useUri = useContext(UriContext);
+    return useUri;
+  };
+  
 
 export const UriProvider = ({ children }) => {
     const [uri, setUri] = useState('');
@@ -35,4 +41,4 @@ export const UriProvider = ({ children }) => {
     );
 };
 
-export const useUri = () => useContext(UriContext);
+// export const useUri = () => useContext(UriContext);

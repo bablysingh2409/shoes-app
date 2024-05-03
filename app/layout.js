@@ -23,7 +23,7 @@ function RootLayout({ children }) {
                 <Nav />
                 {children}
               </div>
-              <Footer />
+              {/* <Footer /> */}
             </div>
           </AuthProvider>
         </UriProvider>
