@@ -1,20 +1,16 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function Header() {
-    const [searchValue,setSearchValue]=useState('')
-    
+  const [searchValue, setSearchValue] = useState("");
+
   return (
-    <div className='w-full '>
-        <div className='flex justify-center items-center'>
-            <input
-                type='text'
-                placeholder='Search Product'
-                className='w-[90%] px-3 py-2 rounded-md border-2 md:w-[40%]'
-            />
-        </div>
-    </div>
-  )
+    <input
+      type="text"
+      placeholder="Search Product"
+      className="w-full text-[#6D6D6D] font-[Mulish] text-[12px] font-normal px-2 py-2 rounded-md outline-none"
+    />
+  );
 }
 
-export default Header
+export default Header;

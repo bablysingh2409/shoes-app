@@ -1,7 +1,13 @@
 "use client"
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
+
+export const useAuth = () => {
+    const auth = useContext(AuthContext);
+    return auth;
+  };
+  
 
 export const AuthProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,4 +38,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+// export const useAuth = () => useContext(AuthContext);
