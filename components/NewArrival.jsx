@@ -1,9 +1,11 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axiosInstance from "@/services/axiosConfig";
+import { Base_url } from "@/constant/links";
 
 const data = [
   { name: "shoe1", price: "₹2000" },
@@ -48,8 +50,6 @@ const PrevArrow = (props) => {
         backgroundColor: "black",
         borderRadius: "10px",
 
-        // Increase arrow size
-        // padding: "10px", // Increase arrow padding
       }}
       onClick={onClick}
     />
@@ -57,6 +57,30 @@ const PrevArrow = (props) => {
 };
 
 function NewArrival() {
+    const [newArrivalData,setNewArrivalData]=useState([]);
+
+
+useEffect(()=>{
+    const uri=localStorage.getItem('uri');
+    if(uri && !newArrivalData.length){
+        fetchNewArrivalData(uri);
+    }
+},[newArrivalData.length])
+
+const fetchNewArrivalData=async(uri)=>{
+    try {
+        const response = await axiosInstance.get(
+            `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=latestOffers`
+          );
+        //   console.log('new arrival data response..',response)
+        setNewArrivalData(response?.data.data[0].items)
+        console.log('new arrival data',response?.data.data[0].items)
+          
+    } catch (error) {
+        console.log(error) ;
+    }
+}
+
   const settings = {
     dots: false,
     infinite: true,
@@ -78,22 +102,10 @@ function NewArrival() {
       },
     ],
   };
-  const [startIndex, setStartIndex] = useState(0);
-
-  const handleForward = () => {
-    setStartIndex((prevIndex) =>
-      prevIndex + 1 < data.length ? prevIndex + 1 : 0
-    );
-  };
-
-  const handleBackward = () => {
-    setStartIndex((prevIndex) =>
-      prevIndex - 1 >= 0 ? prevIndex - 1 : data.length - 1
-    );
-  };
+ 
   return (
     <div className=" py-4 mx-8">
-      <h1 className="flex justify-center items-center gap-2 text-[14px] font-semibold uppercase">
+      <h1 className="flex justify-center items-center gap-2 text-[14px] font-semibold uppercase mb-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
@@ -124,24 +136,24 @@ function NewArrival() {
       </h1>
 
       <Slider {...settings}>
-        {data.map((item, i) => (
+        {newArrivalData.length>0 && newArrivalData.map((item, i) => (
           <Link key={i} href="/productDetails">
             <div className="relative">
               <div
-                className="sm:w-[392.783px] sm:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
+                className="lg:w-[392.783px] lg:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
                 style={{
                   backgroundImage:
-                    "url('https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/b95033d3-2b18-4e8e-b386-56e4209b3352/air-jordan-1-low-shoes-6Q1tFM.png')",
+                    `url(${Base_url}${item.item.itemImages[0]})`,
                   backgroundSize: "cover",
                 }}
               >
                 <div className="absolute bottom-0 w-full">
                   <div className="bg-opacity-50 text-center p-4">
                     <h1 className="text-[20px] font-bold text-white uppercase">
-                      {item.name}
+                      {item.item.itemName}
                     </h1>
                     <p className="text-[20px] font-semibold text-white">
-                      {item.price}
+                      {item.mrp.pricePerUnit}
                     </p>
                     <button className="text-black border border-black bg-white text-lg rounded-2xl w-[80.339px] h-[34.881px]">
                       Shop

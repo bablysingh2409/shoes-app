@@ -8,7 +8,7 @@ import { useRef } from "react";
 // bg-cover sm:bg-cover bg-center h-[40vh] sm:h-[70vh] font-book-antiqua flex justify-center items-center
 
 const Slide = () => (
-  <div className="w-full h-[60vh] sm:h-[85vh] bg-center  font-book-antiqua flex justify-center items-center " style={{ backgroundImage: "url('/banner.png')",backgroundSize: "cover" }}>
+  <div className=" w-full h-[60vh] sm:h-[85vh] bg-center  font-book-antiqua flex justify-center items-center " style={{ backgroundImage: "url('/banner.png')",backgroundSize: "cover" }}>
     <div className="flex flex-col items-center justify-center text-center">
       <p className="text-white font-serif sm:text-4xl text-3xl font-normal leading-none uppercase mb-2">
         WOMEN&#39;S SHOES
@@ -42,7 +42,7 @@ export default function ShoeBanner() {
   const slider = useRef(null);
 
   return (
-    <div className="relative max-w-full mt-2">
+    <div className="relative max-w-full">
       <Slider {...settings} ref={slider}>
         <Slide />
         <Slide />
