@@ -1,17 +1,13 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axiosInstance from "@/services/axiosConfig";
+import { Base_url } from "@/constant/links";
 
-const data = [
-  { name: "shoe1", price: "₹2000" ,img:1},
-  { name: "shoe1", price: "₹4000" ,img:2},
-  { name: "shoe1", price: "₹5000" ,img:3},
-  
-  //   { name: "shoe1", price: "₹2000" },
-];
+
 
 const NextArrow = (props) => {
   const { className, onClick } = props;
@@ -55,6 +51,28 @@ const PrevArrow = (props) => {
 };
 
 function MostPopular() {
+
+    const [mostPopularData, setMostPopularData] = useState([]);
+
+    useEffect(() => {
+        const uri=localStorage.getItem('uri');
+        if (uri && !mostPopularData.length) {
+          fetchData(uri);
+        }
+      }, [mostPopularData]);
+
+
+    const fetchData = async (uri) => {
+        try {
+          const response = await axiosInstance.get(
+            `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=topViews`
+          );
+          setMostPopularData(response?.data.data[0].items);
+        // console.log('response of most popular',response?.data.data[0].items)
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
   const settings = {
     dots: false,
     infinite: true,
@@ -112,24 +130,24 @@ function MostPopular() {
       </h1>
 
       <Slider {...settings}>
-        {data.map((item, i) => (
-          <Link key={i} href="/productDetails">
+        {mostPopularData.length>0 && mostPopularData.map((item) => (
+          <Link key={item._id} href={`/productDetails/${item.item._id}`}>
             <div className="relative">
               <div
-                className="sm:w-[412.783px] sm:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
+                className="lg:w-[412.783px] lg:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
                 style={{
                   backgroundImage:
-                    `url(/mostpopular-${item.img}.png)`,
+                  `url(${Base_url}${item.item.itemImages[0]})`,
                   backgroundSize: "cover",
                 }}
               >
                 <div className="absolute  w-full">
                   <div className="bg-opacity-50 text-center p-4">
                     <h1 className="text-[20px] font-bold text-white uppercase">
-                      {item.name}
+                      {item.item.itemName}
                     </h1>
                     <p className="text-[20px] font-semibold text-white">
-                      {item.price}
+                      {item.mrp.pricePerUnit}
                     </p>
                     <button className="text-white border border-white  text-lg w-[80.339px] h-[34.881px]">
                       Shop
