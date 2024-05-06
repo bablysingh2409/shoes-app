@@ -23,7 +23,7 @@ function RootLayout({ children }) {
               <div className="flex-grow mb-14">
                 <Nav />
                 
-                <NavHeader/>
+                {/* <NavHeader/> */}
                 
                 {children}
               </div>

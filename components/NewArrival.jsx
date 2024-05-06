@@ -7,15 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import axiosInstance from "@/services/axiosConfig";
 import { Base_url } from "@/constant/links";
 
-const data = [
-  { name: "shoe1", price: "₹2000" },
-  { name: "shoe1", price: "₹4000" },
-  { name: "shoe1", price: "₹5000" },
-  { name: "shoe1", price: "₹6000" },
-  { name: "shoe1", price: "₹7000" },
-  { name: "shoe1", price: "₹8000" },
-  //   { name: "shoe1", price: "₹2000" },
-];
+
 
 const NextArrow = (props) => {
   const { className, onClick } = props;
@@ -74,7 +66,7 @@ const fetchNewArrivalData=async(uri)=>{
           );
         //   console.log('new arrival data response..',response)
         setNewArrivalData(response?.data.data[0].items)
-        console.log('new arrival data',response?.data.data[0].items)
+        //  console.log('new arrival data',response?.data.data[0].items)
           
     } catch (error) {
         console.log(error) ;
@@ -136,8 +128,8 @@ const fetchNewArrivalData=async(uri)=>{
       </h1>
 
       <Slider {...settings}>
-        {newArrivalData.length>0 && newArrivalData.map((item, i) => (
-          <Link key={i} href="/productDetails">
+        {newArrivalData.length>0 && newArrivalData.map((item) => (
+          <Link key={item._id} href={`/productDetails/${item.item._id}`}>
             <div className="relative">
               <div
                 className="lg:w-[392.783px] lg:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
