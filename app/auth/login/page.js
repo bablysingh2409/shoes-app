@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Registration from "@/components/Registration";
 import { useAuth } from "@/context/Auth";
 
+
 export function Page() {
   const router = useRouter();
   const { login} = useAuth();
