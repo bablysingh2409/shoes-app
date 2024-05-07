@@ -2,7 +2,6 @@
 import axiosInstance from "@/services/axiosConfig";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-
 function NavHeader() {
   const [categoriesData, setCategoriesData] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -21,7 +20,7 @@ function NavHeader() {
         `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=topCategories`
       );
       setCategoriesData(response?.data?.data);
-      //   console.log("categories data..", response?.data.data);
+    //   console.log("categories data..", response?.data.data);
       //   setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -94,9 +93,9 @@ function NavHeader() {
         <div className="cursor-pointer">
           {" "}
           <Link href="/newarrivals">
-            <p className="uppercase text-[14px] font-bold text-white font-mulish">
-              new arrivals
-            </p>
+          <p className="uppercase text-[14px] font-bold text-white font-mulish">
+            new arrivals
+          </p>
           </Link>
         </div>
         <div className="cursor-pointer">

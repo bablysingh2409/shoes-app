@@ -128,11 +128,7 @@ function Category() {
       <Slider {...settings}>
         {categoryData.length > 0 &&
           categoryData.map((item,i) => (
-            <Link
-                href={`/category/${item.items[0]?.categoriesTree[0]}`}
-                key={i}
-              >
-            <div className="relative" >
+            <div className="relative" key={i}>
               <div
                 className="lg:w-[392.783px] lg:h-[468.664px] bg-center bg-cover font-book-antiqua flex justify-center items-center relative w-full h-[386.164px]"
                 style={{
@@ -149,7 +145,6 @@ function Category() {
                 </div>
               </div>
             </div>
-            </Link>
           ))}
       </Slider>
     </div>
