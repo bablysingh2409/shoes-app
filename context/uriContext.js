@@ -21,7 +21,7 @@ export const UriProvider = ({ children }) => {
             const response = await axiosInstance.post('/users/workspace/subdomain', {
                 mulltiplyURL: 'stomize',
             });
-            console.log('response',response.data.data)
+            // console.log('response',response.data.data)
             const fetchedUri = response.data.data.uri.uri;
             localStorage.setItem('uri', fetchedUri);
             localStorage.setItem("SellerDetails", JSON.stringify(response.data.data));

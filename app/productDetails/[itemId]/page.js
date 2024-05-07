@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Dropdown from "@/components/Dropdown";
+import SimilarData from "@/components/SimilarData";
+
 
 function ProductPage({ params }) {
   const router = useRouter();
@@ -39,9 +41,12 @@ function ProductPage({ params }) {
     };
   }, [params.itemId]);
 
-  // const handleResize = () => {
-  //   setIsMobile(window.innerWidth < 768); // Adjust the threshold as needed
-  // };
+  const handleSizeChange = (event) => {
+    // console.log(event);
+    router.push(`/item/${event}`);
+    // setSelectedSize(event.itemVariantInfo.size);
+  };
+
 
   const fetchData = async () => {
     try {
@@ -57,7 +62,7 @@ function ProductPage({ params }) {
         response?.data?.data[0].attributeSet.item.itemImages[0] || ""
       );
 
-      setSelectedSize(response?.data?.data[0]?.attributeSet.item.itemVariantInfo.Size)
+      setSelectedSize(response?.data?.data[0]?.attributeSet?.item?.itemVariantInfo.size)
       // setPrice(response?.data?.data[0]?.attributeSet.mrp.pricePerUnit);
       console.log("itemssss", response?.data?.data[0]);
     } catch (error) {
@@ -71,6 +76,7 @@ function ProductPage({ params }) {
 
 
   return (
+
     <div className="w-full p-4 ">
       <div className="flex gap-2 md:flex-row flex-col justify-center ">
         {/* Image Gallery */}
@@ -129,16 +135,16 @@ function ProductPage({ params }) {
               {itemDetails?.attributeSet?.item?.variants.map((variant)=>{
                 return (
                   <Link href={`/productDetails/${variant._id}`} key={variant._id}>
-                  <div
+                  <div 
                     // onClick={() => handleSizeSelect(variant.itemVariantInfo.Size)}
                     className={`p-3 rounded-full border border-black w-[50px] h-[50px] cursor-pointer ${
-                      selectedSize === variant.itemVariantInfo.Size
+                      selectedSize === variant.itemVariantInfo.size
                         ? "bg-black text-white"
                         : ""
                     }`}
                   >
                     <div className="flex items-center justify-center">
-                      <p className=" font-semibold">{variant.itemVariantInfo.Size}</p>
+                      <p className=" font-semibold">{variant.itemVariantInfo.size}</p>
                     </div>
                   </div>
                   </Link>
@@ -167,27 +173,11 @@ function ProductPage({ params }) {
                 <Dropdown
                   title="Delivery"
                   items={[dropdata?.metaData?.workspace?.shipmentInfo]}
-                />
-                
-
-                
+                />     
               </div>
-          {/* <div className="flex flex-row items-center gap-10">
-            <div className="flex flex-row items-center">
-              <button className="bg-gray-200 py-2 px-5 rounded-lg text-violet-800 text-3xl">
-                -
-              </button>
-              <span className=" py-4 px-6 rounded-lg">1</span>
-              <button className="bg-gray-200 py-2 px-5 rounded-lg text-violet-800 text-3xl">
-                +
-              </button>
-            </div>
-            <button className="bg-violet-800 text-white font-semibold py-2 px-16 rounded-xl ">
-              Add to Cart
-            </button>
-          </div> */}
         </div>
       </div>
+      <SimilarData data={itemDetails}/>
     </div>
   );
 }
