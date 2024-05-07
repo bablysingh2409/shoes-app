@@ -1,3 +1,4 @@
+import Category from "@/components/Category";
 import Header from "@/components/Header";
 import MostPopular from "@/components/MostPopular";
 import NewArrival from "@/components/NewArrival";
@@ -13,6 +14,7 @@ function Home() {
       <TopBrands/>
       <NewArrival/>
       <MostPopular/>
+      <Category/>
     </section>
   )
 }
