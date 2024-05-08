@@ -20,7 +20,7 @@ function NavHeader() {
         `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=topCategories`
       );
       setCategoriesData(response?.data?.data);
-    //   console.log("categories data..", response?.data.data);
+      //   console.log("categories data..", response?.data.data);
       //   setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -71,10 +71,7 @@ function NavHeader() {
                     href={`/category/${category.items[0]?.categoriesTree[0]}`}
                     key={category._id}
                   >
-                    <div
-                      className="px-2 py-3 flex justify-center items-center"
-                      
-                    >
+                    <div className="px-2 py-3 flex justify-center items-center">
                       <p className="text-lg text-gray-800 hover:text-gray-400">
                         {category.category}
                       </p>
@@ -86,22 +83,26 @@ function NavHeader() {
         </div>
 
         <div className="cursor-pointer">
+        <Link href="featured">
           <p className="uppercase text-[14px] font-bold text-white font-mulish">
-            brands
-          </p>
-        </div>
-        <div className="cursor-pointer">
-          {" "}
-          <Link href="/newarrivals">
-          <p className="uppercase text-[14px] font-bold text-white font-mulish">
-            new arrivals
+            FEATURED PRODUCTS
           </p>
           </Link>
         </div>
         <div className="cursor-pointer">
-          <p className="uppercase text-[14px] font-bold text-white font-mulish">
-            most popular
-          </p>
+          {" "}
+          <Link href="/newarrivals">
+            <p className="uppercase text-[14px] font-bold text-white font-mulish">
+              new arrivals
+            </p>
+          </Link>
+        </div>
+        <div className="cursor-pointer">
+          <Link href="/mostPopular">
+            <p className="uppercase text-[14px] font-bold text-white font-mulish">
+              most popular
+            </p>
+          </Link>
         </div>
       </div>
     </div>

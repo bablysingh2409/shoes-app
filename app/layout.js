@@ -3,11 +3,12 @@
 import "./globals.css";
 import Nav from "../components/Nav";
 import { ChakraProvider } from "@chakra-ui/react";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 // import Provider from './components/Provider';
 import { UriProvider } from "@/context/uriContext";
 import { AuthProvider } from "@/context/Auth";
 import NavHeader from "@/components/NavHeader";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "shoe-app",
@@ -27,7 +28,7 @@ function RootLayout({ children }) {
                 
                 {children}
               </div>
-              {/* <Footer /> */}
+              <Footer />
             </div>
           </AuthProvider>
         </UriProvider>

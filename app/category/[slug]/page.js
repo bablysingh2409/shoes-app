@@ -11,7 +11,7 @@ import axiosInstance from "@/services/axiosConfig";
 // Shimmer component
 const CategoryShimmer = () => {
   return (
-    <div class="md:mt-10 md:px-6 mt-8 justify-center items-center max-w-full">
+    <div class="md:mt-10 md:px-6 mt-8 justify-center items-center max-w-full animate-pulse">
       <div className="flex items-center justify-center font-book-antiqua">
         <div className="w-48 h-8 bg-gray-200 mb-4"></div>
       </div>

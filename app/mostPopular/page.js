@@ -33,7 +33,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axiosInstance.get(
-        `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=latestOffers`
+        `https://api.mulltiply.com/offers/active-offers-stats-new/${uri}?type=topViews`
       );
       setData(response?.data.data[0].items);
       // console.log(response?.data.data[0].items);
@@ -45,7 +45,7 @@ const Page = () => {
   return (
     <div className="md:mt-10 md:px-6 mt-8 justify-center items-center max-w-full">
       <div className="flex items-center justify-center font-book-antiqua">
-          <p className="text-[28px]">NEW ARRIVALS</p>
+          <p className="text-[28px]">MOST POPULAR</p>
         </div>
       <div class=" flex flex-wrap  justify-center space-x-2">
         {loading 
